@@ -22,7 +22,7 @@ body {
 #character {
     width: 60px;
     height: 60px;
-    background-image: url('your-character-image.png'); /* Your custom character image */
+    background-image: url('character.png'); /* Your custom character image */
     background-size: cover;
     position: absolute;
     bottom: 20px;
