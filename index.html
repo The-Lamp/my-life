@@ -5,72 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: #ffd600;
+            background-color: #ffd600; /* Same yellow background as your image */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-        }
-
-        .frame-container {
             position: relative;
-            display: flex;
-            gap: 30px;
         }
 
         .frame {
-            width: 150px;
-            height: 150px;
-            background-color: white;
+            width: 200px;
+            height: 200px;
             border: 10px solid white;
             position: relative;
+            margin: 0 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        /* Image inside the frame */
         .frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
+        /* Rope effect */
         .rope {
-            width: 2px;
-            height: 50px;
+            width: 3px;
+            height: 60px;
             background-color: black;
             position: absolute;
-            top: -50px;
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
         }
 
+        /* Small triangles on the sides */
         .triangle {
+            position: absolute;
             width: 0;
             height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 15px solid black;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 25px solid black;
+            top: 30px;
+        }
+
+        .triangle-1 {
+            left: -40px;
+        }
+
+        .triangle-2 {
+            right: -40px;
+        }
+
+        /* Adding the "PHOTO FRAME" text */
+        .frame-text {
             position: absolute;
-            top: -65px;
+            bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+
+        /* Decorative lines near text */
+        .lines {
+            position: absolute;
+            bottom: 20px;
+            right: -30px;
+        }
+
+        .lines div {
+            width: 30px;
+            height: 3px;
+            background-color: black;
+            margin-bottom: 5px;
+            transform: rotate(35deg);
         }
     </style>
-    <title>Photo Frame</title>
+    <title>Advanced Photo Frame</title>
 </head>
 <body>
 
-    <div class="frame-container">
+    <div class="container">
+        <!-- First Frame -->
         <div class="frame">
             <div class="rope"></div>
-            <div class="triangle"></div>
+            <div class="triangle triangle-1"></div>
+            <div class="triangle triangle-2"></div>
             <img src="/mnt/data/file-hXqMHtNrNVScRMmC2Is0O5u2" alt="Your Image">
+            <div class="frame-text">PHOTO FRAME</div>
+            <div class="lines">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
 
+        <!-- Second Frame (Optional, you can delete this block if you only need one frame) -->
         <div class="frame">
             <div class="rope"></div>
-            <div class="triangle"></div>
+            <div class="triangle triangle-1"></div>
+            <div class="triangle triangle-2"></div>
             <img src="/mnt/data/file-hXqMHtNrNVScRMmC2Is0O5u2" alt="Your Image">
+            <div class="frame-text">PHOTO FRAME</div>
+            <div class="lines">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
 
