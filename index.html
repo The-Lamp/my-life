@@ -434,7 +434,7 @@
             }
         });
     </script>
-    // Like button toggle
+    <script>    // Like button toggle
 document.getElementById('likeBtn').addEventListener('click', function () {
     this.classList.toggle('liked');
     if (this.classList.contains('liked')) {
@@ -515,5 +515,6 @@ function updateStory(index) {
     document.getElementById('storyUsername').textContent = story.username;
     video.play(); // Auto play the new story video
 }
+        </script>
 </body>
 </html>
