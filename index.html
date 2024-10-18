@@ -60,6 +60,7 @@
             flex-direction: column;
             align-items: center;
             margin: 0 10px;
+            cursor: pointer;
         }
 
         .story img {
@@ -143,6 +144,48 @@
         .bottom-nav img {
             width: 26px;
         }
+
+        /* Story Modal Styles */
+        .story-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .story-container {
+            position: relative;
+            width: 375px;
+            height: 812px;
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .story-content {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -159,52 +202,33 @@
 
     <!-- Story Section -->
     <div class="stories">
-        <div class="story">
+        <div class="story" data-story="story1.jpg">
             <img src="images/cyb_rahul_14030727_115710311.jpg" alt="Your Story">
             <span>Your Story</span>
         </div>
-        <div class="story">
+        <div class="story" data-story="story2.jpg">
             <img src="images/aman.kumarpuri_14030727_115801393.jpg" alt="karenne">
             <span>aman.kumarpuri</span>
         </div>
-        <div class="story">
+        <div class="story" data-story="story3.jpg">
             <img src="images/sadhguru_14030727_115855131.jpg" alt="zackjohn">
             <span>sadhguru</span>
         </div>
-        <div class="story">
+        <div class="story" data-story="story4.jpg">
             <img src="images/rohit.kumarpuri_14030727_115747480.jpg" alt="kieron_d">
             <span>rohit.kumarpuri</span>
         </div>
-        <div class="story">
+        <div class="story" data-story="story5.jpg">
             <img src="images/shahidkapoor_14030727_115818582.jpg" alt="craig_love">
             <span>shahidkapoor</span>
         </div>
-    <div class="story">
-            <img src="images/mira.kapoor_14030727_115839233.jpg" alt="craig_love">
-            <span>mira.kapoor</span>
-        </div>
-</div>
+    </div>
 
-    <!-- Post Section -->
-    <div class="post">
-        <div class="post-header">
-            <img src="code_here" alt="User Profile">
-            <div>
-                <span>joshua_l</span>
-                <div class="location">Tokyo, Japan</div>
-            </div>
-        </div>
-        <img src="code_here" class="post-image" alt="Post Image">
-        <div class="post-footer">
-            <div class="actions">
-                <img src="code_here" alt="Like">
-                <img src="code_here" alt="Comment">
-                <img src="code_here" alt="Share">
-            </div>
-            <div class="likes">Liked by craig_love and 44,686 others</div>
-            <div class="caption">
-                <span>joshua_l</span> The game in Japan was amazing and I want to share some photos
-            </div>
+    <!-- Story Modal -->
+    <div class="story-modal" id="storyModal">
+        <div class="story-container">
+            <button class="close-btn" id="closeModal">X</button>
+            <div class="story-content" id="storyContent"></div>
         </div>
     </div>
 
@@ -216,6 +240,34 @@
         <img src="code_here" alt="Explore">
         <img src="code_here" alt="Profile">
     </div>
+
+    <script>
+        const stories = document.querySelectorAll('.story');
+        const storyModal = document.getElementById('storyModal');
+        const storyContent = document.getElementById('storyContent');
+        const closeModal = document.getElementById('closeModal');
+
+        // Open Story Modal when story is clicked
+        stories.forEach(story => {
+            story.addEventListener('click', function() {
+                const storyImage = this.getAttribute('data-story');
+                storyContent.style.backgroundImage = `url(${storyImage})`;
+                storyModal.style.display = 'flex';
+            });
+        });
+
+        // Close Story Modal
+        closeModal.addEventListener('click', function() {
+            storyModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the story container
+        window.addEventListener('click', function(event) {
+            if (event.target === storyModal) {
+                storyModal.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
