@@ -162,15 +162,27 @@
     transition: all 0.3s ease;
 }
 
+/* Update the container to be responsive */
 .story-container {
-    width: 375px;
-    height: 812px;
+    width: 100%; /* Ensure it takes full width */
+    height: 100%; /* Ensure it takes full height */
+    max-width: 375px; /* Maximum width for larger screens */
+    max-height: 812px; /* Maximum height for larger screens */
     background-color: #fff;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     overflow: hidden;
     animation: slide-up 0.4s ease;
     position: relative;
+}
+
+/* Adjust for smaller screens */
+@media only screen and (max-width: 768px) {
+    .story-container {
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        border-radius: 0; /* Remove rounded corners on small screens */
+    }
 }
 
 @keyframes slide-up {
