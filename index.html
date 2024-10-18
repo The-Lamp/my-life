@@ -118,6 +118,7 @@
         .post .post-footer img {
             width: 24px;
             margin-right: 15px;
+            cursor: pointer;
         }
 
         .post .post-footer .likes {
@@ -143,23 +144,24 @@
 
         .bottom-nav img {
             width: 26px;
+            cursor: pointer;
         }
 
-        /* Story Modal Styles */
-        .story-modal {
+        /* Story Viewing UI */
+        .story-view {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
         }
 
-        .story-container {
-            position: relative;
+        .story-view .story-container {
             width: 375px;
             height: 812px;
             background-color: white;
@@ -168,23 +170,83 @@
             overflow: hidden;
         }
 
-        .story-content {
+        .story-view .status-bar {
+            position: absolute;
+            top: 0;
             width: 100%;
-            height: 100%;
+            height: 40px;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .story-view .story-content {
+            position: relative;
+            top: 40px;
+            width: 100%;
+            height: calc(100% - 120px);
             background-color: #fff;
             background-size: cover;
             background-position: center;
         }
 
-        .close-btn {
+        .story-view .story-header {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #fff;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .story-view .story-header img {
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .story-view .username {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .story-view .time {
+            color: #ccc;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .story-view .send-message-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background-color: #fff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
+        }
+
+        .story-view .send-message-bar input {
+            width: 80%;
+            height: 35px;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            outline: none;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -202,33 +264,37 @@
 
     <!-- Story Section -->
     <div class="stories">
-        <div class="story" data-story="story1.jpg">
-            <img src="images/cyb_rahul_14030727_115710311.jpg" alt="Your Story">
+        <div class="story" onclick="openStory('User Image 1', 'Username 1', 'Image URL 1')">
+            <img src="images/story_1.jpg" alt="Your Story">
             <span>Your Story</span>
         </div>
-        <div class="story" data-story="story2.jpg">
-            <img src="images/aman.kumarpuri_14030727_115801393.jpg" alt="karenne">
-            <span>aman.kumarpuri</span>
+        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
+            <img src="images/story_2.jpg" alt="User Story 2">
+            <span>user_2</span>
         </div>
-        <div class="story" data-story="story3.jpg">
-            <img src="images/sadhguru_14030727_115855131.jpg" alt="zackjohn">
-            <span>sadhguru</span>
-        </div>
-        <div class="story" data-story="story4.jpg">
-            <img src="images/rohit.kumarpuri_14030727_115747480.jpg" alt="kieron_d">
-            <span>rohit.kumarpuri</span>
-        </div>
-        <div class="story" data-story="story5.jpg">
-            <img src="images/shahidkapoor_14030727_115818582.jpg" alt="craig_love">
-            <span>shahidkapoor</span>
-        </div>
+        <!-- Add more stories -->
     </div>
 
-    <!-- Story Modal -->
-    <div class="story-modal" id="storyModal">
-        <div class="story-container">
-            <button class="close-btn" id="closeModal">X</button>
-            <div class="story-content" id="storyContent"></div>
+    <!-- Post Section -->
+    <div class="post">
+        <div class="post-header">
+            <img src="code_here" alt="User Profile">
+            <div>
+                <span>joshua_l</span>
+                <div class="location">Tokyo, Japan</div>
+            </div>
+        </div>
+        <img src="code_here" class="post-image" alt="Post Image">
+        <div class="post-footer">
+            <div class="actions">
+                <img src="code_here" alt="Like">
+                <img src="code_here" alt="Comment">
+                <img src="code_here" alt="Share">
+            </div>
+            <div class="likes">Liked by craig_love and 44,686 others</div>
+            <div class="caption">
+                <span>joshua_l</span> The game in Japan was amazing and I want to share some photos
+            </div>
         </div>
     </div>
 
@@ -241,33 +307,53 @@
         <img src="code_here" alt="Profile">
     </div>
 
+    <!-- Story Viewing UI -->
+    <div class="story-view" id="storyView">
+        <div class="story-container">
+            <div class="status-bar">
+                <span>9:41</span>
+                <div class="status-bar-right">
+                    <div class="icon">4G</div>
+                    <div class="icon">WiFi</div>
+                    <div class="icon">Battery</div>
+                </div>
+            </div>
+            <div class="story-header">
+                <img id="storyUserImg" src="" alt="User Image">
+                <div class="username-time">
+                    <span id="storyUsername" class="username"></span>
+                    <span class="time"> • 2h ago</span>
+                </div>
+            </div>
+            <div class="story-content" id="storyContent"></div>
+            <div class="send-message-bar">
+                <input type="text" placeholder="Send message...">
+                <img src="send_icon.png" alt="Send">
+            </div>
+        </div>
+    </div>
+
     <script>
-        const stories = document.querySelectorAll('.story');
-        const storyModal = document.getElementById('storyModal');
-        const storyContent = document.getElementById('storyContent');
-        const closeModal = document.getElementById('closeModal');
+        function openStory(userImg, username, storyImg) {
+            // Display the story view
+            document.getElementById('storyView').style.display = 'flex';
+            
+            // Update the story content
+            document.getElementById('storyUserImg').src = userImg;
+            document.getElementById('storyUsername').textContent = username;
+            document.getElementById('storyContent').style.backgroundImage = `url(${storyImg})`;
+        }
 
-        // Open Story Modal when story is clicked
-        stories.forEach(story => {
-            story.addEventListener('click', function() {
-                const storyImage = this.getAttribute('data-story');
-                storyContent.style.backgroundImage = `url(${storyImage})`;
-                storyModal.style.display = 'flex';
-            });
-        });
+        function closeStory() {
+            document.getElementById('storyView').style.display = 'none';
+        }
 
-        // Close Story Modal
-        closeModal.addEventListener('click', function() {
-            storyModal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside the story container
-        window.addEventListener('click', function(event) {
-            if (event.target === storyModal) {
-                storyModal.style.display = 'none';
+        // Close story by tapping outside content area
+        document.getElementById('storyView').addEventListener('click', function (e) {
+            if (e.target === document.getElementById('storyView')) {
+                closeStory();
             }
         });
     </script>
-
 </body>
 </html>
