@@ -434,5 +434,86 @@
             }
         });
     </script>
+    // Like button toggle
+document.getElementById('likeBtn').addEventListener('click', function () {
+    this.classList.toggle('liked');
+    if (this.classList.contains('liked')) {
+        this.src = 'like_red_icon.png'; // Change to red like icon
+    } else {
+        this.src = 'like_icon.png'; // Change back to original
+    }
+});
+
+// Close button functionality
+document.getElementById('closeBtn').addEventListener('click', function () {
+    document.getElementById('storyView').style.display = 'none';
+});
+
+// Volume button toggle
+let video = document.getElementById('storyVideo');
+document.getElementById('volumeBtn').addEventListener('click', function () {
+    if (video.muted) {
+        video.muted = false;
+        this.src = 'volume_on_icon.png'; // Change to volume on icon
+    } else {
+        video.muted = true;
+        this.src = 'volume_off_icon.png'; // Change to volume off icon
+    }
+});
+
+// Swipe functionality for next story
+let currentStoryIndex = 0;
+const stories = [
+    { videoSrc: 'story1.mp4', userImg: 'user1.png', username: 'User1' },
+    { videoSrc: 'story2.mp4', userImg: 'user2.png', username: 'User2' },
+    // Add more stories as needed
+];
+
+document.getElementById('storyView').addEventListener('touchstart', handleTouchStart, false);
+document.getElementById('storyView').addEventListener('touchmove', handleTouchMove, false);
+
+let xDown = null;
+
+function handleTouchStart(evt) {
+    const firstTouch = evt.touches[0];
+    xDown = firstTouch.clientX;
+}
+
+function handleTouchMove(evt) {
+    if (!xDown) {
+        return;
+    }
+
+    let xUp = evt.touches[0].clientX;
+    let xDiff = xDown - xUp;
+
+    if (xDiff > 0) {
+        // Swipe left - show next story
+        showNextStory();
+    } else {
+        // Swipe right - show previous story (if needed)
+        showPreviousStory();
+    }
+
+    xDown = null; // Reset for next swipe
+}
+
+function showNextStory() {
+    currentStoryIndex = (currentStoryIndex + 1) % stories.length;
+    updateStory(currentStoryIndex);
+}
+
+function showPreviousStory() {
+    currentStoryIndex = (currentStoryIndex - 1 + stories.length) % stories.length;
+    updateStory(currentStoryIndex);
+}
+
+function updateStory(index) {
+    const story = stories[index];
+    document.getElementById('storyVideo').src = story.videoSrc;
+    document.getElementById('storyUserImg').src = story.userImg;
+    document.getElementById('storyUsername').textContent = story.username;
+    video.play(); // Auto play the new story video
+}
 </body>
 </html>
