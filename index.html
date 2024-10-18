@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cyb Rahul | Stylish Website</title>
+    <title>Cyb Rahul | 3D Stylish Website</title>
     <style>
         * {
             margin: 0;
@@ -13,57 +13,81 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #121212;
+            background-color: #0d0d0d;
             color: white;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            overflow: hidden;
+            perspective: 1000px;
         }
         .container {
             background: rgba(255, 255, 255, 0.1);
             padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            transform: rotateY(0deg);
+            animation: rotate 20s infinite linear;
         }
         h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            background: linear-gradient(45deg, #00f260, #0575e6);
             -webkit-background-clip: text;
             color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            animation: glow 1.5s infinite alternate;
         }
         p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
         a {
-            font-size: 1.5rem;
-            padding: 10px 30px;
-            background: linear-gradient(45deg, #6a82fb, #fc5c7d);
+            font-size: 1.7rem;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(255, 65, 108, 0.5);
+            transition: transform 0.3s ease, background 0.5s ease;
         }
         a:hover {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #00f260, #0575e6);
         }
         .extra-content {
             margin-top: 50px;
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        @keyframes glow {
+            0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); }
+            100% { text-shadow: 2px 2px 15px rgba(0, 255, 0, 1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to Cyb Rahul's World</h1>
-        <p>Follow us on Instagram for more updates and content.</p>
-        <a href="https://www.instagram.com/CybRahul" target="_blank">Follow @CybRahul</a>
+        <p>Follow us on Instagram for amazing content and updates.</p>
+        <a href="https://www.instagram.com/cyb_rahul" target="_blank">Follow @cyb_rahul</a>
         <div class="extra-content">
-            <p>Extra Material: Keep hustling and exploring the world of tech and creativity.</p>
+            <p>Extra Material: Exploring the world of tech with a new perspective. Stay tuned for exciting projects!</p>
         </div>
     </div>
 </body>
