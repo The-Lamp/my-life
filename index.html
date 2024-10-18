@@ -3,533 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cyb Rahul | Stylish Website</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
-
         body {
-            background-color: #fafafa;
-        }
-
-        /* Navbar */
-        .navbar {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: white;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            background-color: white;
-            padding: 10px 16px;
-            border-bottom: 1px solid #dbdbdb;
+            height: 100vh;
+            text-align: center;
         }
-
-        .navbar .logo {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 30px;
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
-        .navbar .nav-icons {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .nav-icons img {
-            width: 24px;
-            margin-left: 20px;
-            cursor: pointer;
-        }
-
-        /* Story Section */
-        .stories {
-            display: flex;
-            padding: 15px 0;
-            background-color: white;
-            border-bottom: 1px solid #dbdbdb;
-            overflow-x: scroll;
-        }
-
-        .stories::-webkit-scrollbar {
-            display: none;
-        }
-
-        .story {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        .story img {
-            width: 66px;
-            height: 66px;
-            border-radius: 50%;
-            padding: 2px;
-            border: 2px solid #ff8501;
-        }
-
-        .story span {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        /* Post Section */
-        .post {
-            background-color: white;
+        h1 {
+            font-size: 3rem;
             margin-bottom: 20px;
-            border: 1px solid #dbdbdb;
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            -webkit-background-clip: text;
+            color: transparent;
         }
-
-        .post .post-header {
-            display: flex;
-            align-items: center;
-            padding: 12px;
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
         }
-
-        .post .post-header img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            margin-right: 10px;
+        a {
+            font-size: 1.5rem;
+            padding: 10px 30px;
+            background: linear-gradient(45deg, #6a82fb, #fc5c7d);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease;
         }
-
-        .post .post-header span {
-            font-size: 14px;
-            font-weight: bold;
+        a:hover {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
         }
-
-        .post .location {
-            font-size: 12px;
-            color: gray;
+        .extra-content {
+            margin-top: 50px;
+            font-size: 1rem;
+            opacity: 0.8;
         }
-
-        .post .post-image {
-            width: 100%;
-            height: auto;
-        }
-
-        .post .post-footer {
-            padding: 10px;
-        }
-
-        .post .post-footer img {
-            width: 24px;
-            margin-right: 15px;
-            cursor: pointer;
-        }
-
-        .post .post-footer .likes {
-            font-weight: bold;
-        }
-
-        .post .post-footer .caption {
-            margin-top: 5px;
-        }
-
-        /* Bottom Navigation */
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: white;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid #dbdbdb;
-        }
-
-        .bottom-nav img {
-            width: 26px;
-            cursor: pointer;
-        }
-
-        /* Story Viewing UI */
-.story-view {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-/* Update the container to be responsive */
-.story-container {
-    width: 100%; /* Ensure it takes full width */
-    height: 100%; /* Ensure it takes full height */
-    max-width: 375px; /* Maximum width for larger screens */
-    max-height: 812px; /* Maximum height for larger screens */
-    background-color: #fff;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    overflow: hidden;
-    animation: slide-up 0.4s ease;
-    position: relative;
-}
-
-/* Adjust for smaller screens */
-@media only screen and (max-width: 768px) {
-    .story-container {
-        width: 100vw; /* Full viewport width */
-        height: 100vh; /* Full viewport height */
-        border-radius: 0; /* Remove rounded corners on small screens */
-    }
-}
-
-@keyframes slide-up {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-.status-bar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 40px;
-    background-color: #000;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    align-items: center;
-    font-size: 12px;
-}
-
-.story-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
-    padding: 10px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.story-header img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.story-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.story-actions img {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-}
-
-.like-icon {
-    transition: transform 0.3s ease;
-}
-
-.like-icon.liked {
-    transform: scale(1.2);
-}
-
-.close-icon {
-    transition: opacity 0.3s ease;
-}
-
-.close-icon:hover {
-    opacity: 0.6;
-}
-
-.volume-icon {
-    transition: opacity 0.3s ease;
-}
-
-.volume-icon:hover {
-    opacity: 0.6;
-}
-
-.story-content {
-    position: relative;
-    top: 60px;
-    width: 100%;
-    height: calc(100% - 140px);
-    background-color: #fff;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
-
-.story-content video {
-    object-fit: cover;
-}
-
-.send-message-bar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    background-color: #fff;
-    border-top: 1px solid #e0e0e0;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    align-items: center;
-    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.1);
-}
-
-.send-message-bar input {
-    width: 80%;
-    height: 35px;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: 1px solid #e0e0e0;
-    border-radius: 18px;
-    outline: none;
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease;
-}
-
-.send-message-bar input:focus {
-    box-shadow: 0px 0px 5px #007BFF;
-}
-
-.like-icon.liked {
-    filter: brightness(1.5);
-    transform: scale(1.3);
-}
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">Instagram</div>
-        <div class="nav-icons">
-            <img src="images/settings-100.png" alt="Camera">
-            <img src="images/heart.png" alt="IGTV">
-            <img src="images/1729242046256.png" alt="Direct Message">
+    <div class="container">
+        <h1>Welcome to Cyb Rahul's World</h1>
+        <p>Follow us on Instagram for more updates and content.</p>
+        <a href="https://www.instagram.com/CybRahul" target="_blank">Follow @CybRahul</a>
+        <div class="extra-content">
+            <p>Extra Material: Keep hustling and exploring the world of tech and creativity.</p>
         </div>
     </div>
-
-    <!-- Story Section -->
-    <div class="stories">
-        <div class="story" onclick="openStory('User Image 1', 'Username 1', 'Image URL 1')">
-            <img src="images/cyb_rahul_14030727_115710311.jpg" alt="Your Story">
-            <span>Your Story</span>
-        </div>
-        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
-            <img src="images/aman.kumarpuri_14030727_115801393.jpg" alt="User Story 2">
-            <span>aman.kumarpuri</span>
-        </div>
-        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
-            <img src="images/sadhguru_14030727_115855131.jpg" alt="User Story 2">
-            <span>sadhguru</span>
-        </div>
-        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
-            <img src="images/rohit.kumarpuri_14030727_115747480.jpg" alt="User Story 2">
-            <span>rohit.kumarpuri</span>
-        </div>
-        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
-            <img src="images/shahidkapoor_14030727_115818582.jpg" alt="User Story 2">
-            <span>shahidkapoor</span>
-        </div>
-        <div class="story" onclick="openStory('User Image 2', 'Username 2', 'Image URL 2')">
-            <img src="images/mira.kapoor_14030727_115839233.jpg" alt="User Story 2">
-            <span>mira.kapoor</span>
-        </div>
-    </div>
-
-    <!-- Post Section -->
-    <div class="post">
-        <div class="post-header">
-            <img src="code_here" alt="User Profile">
-            <div>
-                <span>joshua_l</span>
-                <div class="location">Tokyo, Japan</div>
-            </div>
-        </div>
-        <img src="code_here" class="post-image" alt="Post Image">
-        <div class="post-footer">
-            <div class="actions">
-                <img src="code_here" alt="Like">
-                <img src="code_here" alt="Comment">
-                <img src="code_here" alt="Share">
-            </div>
-            <div class="likes">Liked by craig_love and 44,686 others</div>
-            <div class="caption">
-                <span>joshua_l</span> The game in Japan was amazing and I want to share some photos
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <img src="images/home.png" alt="Home">
-        <img src="images/instagram-search-icon-8c777c.png" alt="Search">
-        <img src="images/plus.png" alt="Add Post">
-        <img src="images/reel.png" alt="Reels">
-        <img src="images/cyb_rahul_14030727_115710311.jpg" alt="Profile">
-    </div>
-
-    <!-- Story Viewing UI -->
-<div class="story-view" id="storyView">
-    <div class="story-container">
-        <div class="status-bar">
-            <span>9:41</span>
-            <div class="status-bar-right">
-                <div class="icon">4G</div>
-                <div class="icon">WiFi</div>
-                <div class="icon">Battery</div>
-            </div>
-        </div>
-        <div class="story-header">
-            <img id="storyUserImg" src="" alt="User Image">
-            <div class="username-time">
-                <span id="storyUsername" class="username"></span>
-                <span class="time"> • 2h ago</span>
-            </div>
-            <div class="story-actions">
-                <img id="likeBtn" class="like-icon" src="like_icon.png" alt="Like">
-                <img id="volumeBtn" class="volume-icon" src="volume_off_icon.png" alt="Mute/Unmute">
-                <img id="closeBtn" class="close-icon" src="close_icon.png" alt="Close">
-            </div>
-        </div>
-        <!-- Story content (video) -->
-        <div class="story-content" id="storyContent">
-            <video id="storyVideo" width="100%" height="100%" muted>
-                <source src="your_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="send-message-bar">
-            <input type="text" placeholder="Send message...">
-            <img src="images/send.png" alt="Send">
-        </div>
-    </div>
-</div>
-
-    <script>
-        function openStory(userImg, username, storyImg) {
-            // Display the story view
-            document.getElementById('storyView').style.display = 'flex';
-            
-            // Update the story content
-            document.getElementById('storyUserImg').src = userImg;
-            document.getElementById('storyUsername').textContent = username;
-            document.getElementById('storyContent').style.backgroundImage = `url(${storyImg})`;
-        }
-
-        function closeStory() {
-            document.getElementById('storyView').style.display = 'none';
-        }
-
-        // Close story by tapping outside content area
-        document.getElementById('storyView').addEventListener('click', function (e) {
-            if (e.target === document.getElementById('storyView')) {
-                closeStory();
-            }
-        });
-    </script>
-    <script>    // Like button toggle
-document.getElementById('likeBtn').addEventListener('click', function () {
-    this.classList.toggle('liked');
-    if (this.classList.contains('liked')) {
-        this.src = 'like_red_icon.png'; // Change to red like icon
-    } else {
-        this.src = 'like_icon.png'; // Change back to original
-    }
-});
-
-// Close button functionality
-document.getElementById('closeBtn').addEventListener('click', function () {
-    document.getElementById('storyView').style.display = 'none';
-});
-
-// Volume button toggle
-let video = document.getElementById('storyVideo');
-document.getElementById('volumeBtn').addEventListener('click', function () {
-    if (video.muted) {
-        video.muted = false;
-        this.src = 'volume_on_icon.png'; // Change to volume on icon
-    } else {
-        video.muted = true;
-        this.src = 'volume_off_icon.png'; // Change to volume off icon
-    }
-});
-
-// Swipe functionality for next story
-let currentStoryIndex = 0;
-const stories = [
-    { videoSrc: 'images/4B46EFA0319074B269DCB81D25891B9F_video_dashinit.mp4', userImg: 'user1.png', username: 'Your Story' },
-    { videoSrc: 'images/XRecorder_Edited_18102024_151952.mp4', userImg: 'user2.png', username: 'Aman Puri' },
-    { videoSrc: 'images/SaveClip.App_A24F29C527E0D22BDCC386B1C4F12D82_video_dashinit.mp4', userImg: 'user1.png', username: 'Sadh Guru' },
-    { videoSrc: 'images/SaveClip.App_F74C8182D1C2A343EB4D53195022029E_video_dashinit.mp4', userImg: 'user2.png', username: 'Rohit Puri' },
-    { videoSrc: 'images/SaveClip.App_7D4F59C3FA9F9DA5EEF66E6DD588188B_video_dashinit.mp4', userImg: 'user1.png', username: 'Shahid Kapoor' },
-    { videoSrc: 'images/SaveClip.App_B54AFC65CDE288B861C7E6C71C41148B_video_dashinit.mp4', userImg: 'user2.png', username: 'Mira Kapoor' },
-];
-
-document.getElementById('storyView').addEventListener('touchstart', handleTouchStart, false);
-document.getElementById('storyView').addEventListener('touchmove', handleTouchMove, false);
-
-let xDown = null;
-
-function handleTouchStart(evt) {
-    const firstTouch = evt.touches[0];
-    xDown = firstTouch.clientX;
-}
-
-function handleTouchMove(evt) {
-    if (!xDown) {
-        return;
-    }
-
-    let xUp = evt.touches[0].clientX;
-    let xDiff = xDown - xUp;
-
-    if (xDiff > 0) {
-        // Swipe left - show next story
-        showNextStory();
-    } else {
-        // Swipe right - show previous story (if needed)
-        showPreviousStory();
-    }
-
-    xDown = null; // Reset for next swipe
-}
-
-function showNextStory() {
-    currentStoryIndex = (currentStoryIndex + 1) % stories.length;
-    updateStory(currentStoryIndex);
-}
-
-function showPreviousStory() {
-    currentStoryIndex = (currentStoryIndex - 1 + stories.length) % stories.length;
-    updateStory(currentStoryIndex);
-}
-
-function updateStory(index) {
-    const story = stories[index];
-    document.getElementById('storyVideo').src = story.videoSrc;
-    document.getElementById('storyUserImg').src = story.userImg;
-    document.getElementById('storyUsername').textContent = story.username;
-    video.play(); // Auto play the new story video
-}
-        </script>
 </body>
 </html>
