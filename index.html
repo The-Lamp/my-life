@@ -131,13 +131,31 @@
 
         <!-- Added both usernames here with individual buttons -->
         <div class="btn-group">
-            <a href="https://www.instagram.com/cyb_rahul" target="_blank">Follow @cyb_rahul</a>
-            <a href="https://www.instagram.com/thelamp.india" target="_blank">Follow @thelamp.india</a>
+            <a id="link1" href="#" target="_blank">Follow @cyb_rahul</a>
+            <a id="link2" href="#" target="_blank">Follow @thelamp.india</a>
         </div>
 
         <div class="extra-content">
             <p>Extra Material: Keep hustling and exploring the world of tech and creativity.</p>
         </div>
     </div>
+
+    <script>
+        // Function to detect if the user is on mobile or desktop
+        function isMobile() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        // Set different links based on device type
+        if (isMobile()) {
+            // Mobile-specific links
+            document.getElementById('link1').href = "https://mobile-instagram.com/cyb_rahul"; // Replace with your mobile-specific link
+            document.getElementById('link2').href = "https://mobile-instagram.com/thelamp.india"; // Replace with your mobile-specific link
+        } else {
+            // Desktop-specific links
+            document.getElementById('link1').href = "https://www.instagram.com/cyb_rahul";
+            document.getElementById('link2').href = "https://www.instagram.com/thelamp.india";
+        }
+    </script>
 </body>
 </html>
