@@ -476,9 +476,12 @@ document.getElementById('volumeBtn').addEventListener('click', function () {
 // Swipe functionality for next story
 let currentStoryIndex = 0;
 const stories = [
+    { videoSrc: 'story1.mp4', userImg: 'user1.png', username: 'Your Story' },
+    { videoSrc: 'story2.mp4', userImg: 'user2.png', username: 'User2' },
     { videoSrc: 'story1.mp4', userImg: 'user1.png', username: 'User1' },
     { videoSrc: 'story2.mp4', userImg: 'user2.png', username: 'User2' },
-    // Add more stories as needed
+    { videoSrc: 'story1.mp4', userImg: 'user1.png', username: 'User1' },
+    { videoSrc: 'story2.mp4', userImg: 'user2.png', username: 'User2' },
 ];
 
 document.getElementById('storyView').addEventListener('touchstart', handleTouchStart, false);
