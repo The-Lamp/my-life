@@ -21,6 +21,7 @@
             height: 100vh;
             text-align: center;
             perspective: 1500px;
+            overflow: hidden; /* Ensure no overflow on small screens */
         }
         .container {
             background: rgba(255, 255, 255, 0.1);
@@ -29,7 +30,7 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
             transform: rotateY(25deg) rotateX(10deg);
             transition: transform 0.8s ease, box-shadow 0.8s ease;
-            max-width: 90vw; /* Ensure it doesn't overflow on small screens */
+            max-width: 90vw;
             width: 500px;
         }
         .container:hover {
@@ -52,7 +53,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap; /* Make buttons stack vertically on small screens */
+            flex-wrap: wrap;
         }
         a {
             font-size: 1.2rem;
@@ -73,7 +74,6 @@
             font-size: 1.1rem;
             opacity: 0.9;
         }
-        /* Add 3D hover effect */
         .container:hover h1 {
             transform: translateZ(40px);
         }
@@ -82,19 +82,19 @@
             transform: scale(1.2) rotate(3deg);
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Mobile Friendly Adjustments */
         @media (max-width: 768px) {
             body {
-                justify-content: flex-start;
-                align-items: flex-start;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* Ensure container stays centered */
                 padding: 20px;
-                height: auto;
             }
             .container {
                 max-width: 100vw;
                 width: 90%;
                 padding: 30px;
-                transform: rotateY(0deg) rotateX(0deg);
+                transform: none; /* Remove rotation on mobile */
             }
             h1 {
                 font-size: 2rem;
@@ -109,13 +109,14 @@
             a {
                 font-size: 1.3rem;
                 padding: 10px 20px;
-                width: 100%; /* Buttons fill the screen width */
+                width: 100%;
             }
             .extra-content {
                 font-size: 1rem;
                 margin-top: 30px;
             }
         }
+
         /* Larger screens (Desktop and Tablets) */
         @media (min-width: 769px) {
             a {
@@ -129,7 +130,6 @@
         <h1>Welcome to Cyb Rahul's World</h1>
         <p>Follow us on Instagram for more updates and content.</p>
 
-        <!-- Added both usernames here with individual buttons -->
         <div class="btn-group">
             <a id="link1" href="#" target="_blank">Follow @cyb_rahul</a>
             <a id="link2" href="#" target="_blank">Follow @thelamp.india</a>
