@@ -3,125 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone UI</title>
     <style>
-        body {
-            background-color: #ffd600; /* Same yellow background as your image */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
-        .container {
+        body {
+            background-color: #fafafa;
+        }
+
+        /* Navbar */
+        .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            position: relative;
+            background-color: white;
+            padding: 10px 16px;
+            border-bottom: 1px solid #dbdbdb;
         }
 
-        .frame {
-            width: 200px;
-            height: 200px;
-            border: 10px solid white;
-            position: relative;
-            margin: 0 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        .navbar .logo {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 30px;
         }
 
-        /* Image inside the frame */
-        .frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .navbar .nav-icons {
+            display: flex;
+            align-items: center;
         }
 
-        /* Rope effect */
-        .rope {
-            width: 3px;
-            height: 60px;
-            background-color: black;
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
+        .navbar .nav-icons img {
+            width: 24px;
+            margin-left: 20px;
+            cursor: pointer;
         }
 
-        /* Small triangles on the sides */
-        .triangle {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-bottom: 25px solid black;
-            top: 30px;
+        /* Story Section */
+        .stories {
+            display: flex;
+            padding: 15px 0;
+            background-color: white;
+            border-bottom: 1px solid #dbdbdb;
+            overflow-x: scroll;
         }
 
-        .triangle-1 {
-            left: -40px;
+        .stories::-webkit-scrollbar {
+            display: none;
         }
 
-        .triangle-2 {
-            right: -40px;
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
         }
 
-        /* Adding the "PHOTO FRAME" text */
-        .frame-text {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 18px;
+        .story img {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            padding: 2px;
+            border: 2px solid #ff8501;
+        }
+
+        .story span {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Post Section */
+        .post {
+            background-color: white;
+            margin-bottom: 20px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .post .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .post .post-header img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post .post-header span {
+            font-size: 14px;
             font-weight: bold;
-            color: black;
-            text-align: center;
         }
 
-        /* Decorative lines near text */
-        .lines {
-            position: absolute;
-            bottom: 20px;
-            right: -30px;
+        .post .location {
+            font-size: 12px;
+            color: gray;
         }
 
-        .lines div {
-            width: 30px;
-            height: 3px;
-            background-color: black;
-            margin-bottom: 5px;
-            transform: rotate(35deg);
+        .post .post-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .post .post-footer {
+            padding: 10px;
+        }
+
+        .post .post-footer img {
+            width: 24px;
+            margin-right: 15px;
+        }
+
+        .post .post-footer .likes {
+            font-weight: bold;
+        }
+
+        .post .post-footer .caption {
+            margin-top: 5px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .bottom-nav img {
+            width: 26px;
         }
     </style>
-    <title>Advanced Photo Frame</title>
 </head>
 <body>
 
-    <div class="container">
-        <!-- First Frame -->
-        <div class="frame">
-            <div class="rope"></div>
-            <div class="triangle triangle-1"></div>
-            <div class="triangle triangle-2"></div>
-            <img src="/mnt/data/file-hXqMHtNrNVScRMmC2Is0O5u2" alt="Your Image">
-            <div class="frame-text">PHOTO FRAME</div>
-            <div class="lines">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Instagram</div>
+        <div class="nav-icons">
+            <img src="code_here" alt="Camera">
+            <img src="code_here" alt="IGTV">
+            <img src="code_here" alt="Direct Message">
         </div>
+    </div>
 
-        <!-- Second Frame (Optional, you can delete this block if you only need one frame) -->
-        <div class="frame">
-            <div class="rope"></div>
-            <div class="triangle triangle-1"></div>
-            <div class="triangle triangle-2"></div>
-            <img src="/mnt/data/file-hXqMHtNrNVScRMmC2Is0O5u2" alt="Your Image">
-            <div class="frame-text">PHOTO FRAME</div>
-            <div class="lines">
-                <div></div>
-                <div></div>
-                <div></div>
+    <!-- Story Section -->
+    <div class="stories">
+        <div class="story">
+            <img src="code_here" alt="Your Story">
+            <span>Your Story</span>
+        </div>
+        <div class="story">
+            <img src="code_here" alt="karenne">
+            <span>karenne</span>
+        </div>
+        <div class="story">
+            <img src="code_here" alt="zackjohn">
+            <span>zackjohn</span>
+        </div>
+        <div class="story">
+            <img src="code_here" alt="kieron_d">
+            <span>kieron_d</span>
+        </div>
+        <div class="story">
+            <img src="code_here" alt="craig_love">
+            <span>craig_love</span>
+        </div>
+    </div>
+
+    <!-- Post Section -->
+    <div class="post">
+        <div class="post-header">
+            <img src="code_here" alt="User Profile">
+            <div>
+                <span>joshua_l</span>
+                <div class="location">Tokyo, Japan</div>
             </div>
         </div>
+        <img src="code_here" class="post-image" alt="Post Image">
+        <div class="post-footer">
+            <div class="actions">
+                <img src="code_here" alt="Like">
+                <img src="code_here" alt="Comment">
+                <img src="code_here" alt="Share">
+            </div>
+            <div class="likes">Liked by craig_love and 44,686 others</div>
+            <div class="caption">
+                <span>joshua_l</span> The game in Japan was amazing and I want to share some photos
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <img src="code_here" alt="Home">
+        <img src="code_here" alt="Search">
+        <img src="code_here" alt="Add Post">
+        <img src="code_here" alt="Explore">
+        <img src="code_here" alt="Profile">
     </div>
 
 </body>
