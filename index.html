@@ -20,18 +20,19 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            perspective: 1000px;
+            perspective: 1500px;
         }
         .container {
             background: rgba(255, 255, 255, 0.1);
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-            transform: rotateY(20deg);
-            transition: transform 0.6s ease;
+            transform: rotateY(25deg) rotateX(10deg);
+            transition: transform 0.8s ease, box-shadow 0.8s ease;
         }
         .container:hover {
-            transform: rotateY(0deg);
+            transform: rotateY(0deg) rotateX(0deg);
+            box-shadow: 0 20px 50px rgba(255, 255, 255, 0.2);
         }
         h1 {
             font-size: 3rem;
@@ -39,11 +40,16 @@
             background: linear-gradient(45deg, #ff416c, #ff4b2b, #ff7e5f);
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 2px 2px 10px rgba(255, 100, 100, 0.7);
+            text-shadow: 2px 2px 15px rgba(255, 100, 100, 0.7);
         }
         p {
             font-size: 1.3rem;
             margin-bottom: 30px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
         a {
             font-size: 1.5rem;
@@ -66,29 +72,21 @@
         }
         /* Add 3D hover effect */
         .container:hover h1 {
-            transform: translateZ(20px);
+            transform: translateZ(40px);
         }
-        /* Handle links for mobile and desktop */
+        a:hover {
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+            transform: scale(1.2) rotate(3deg);
+        }
+        /* Adjusted link style for mobile and desktop */
         @media (max-width: 768px) {
             a {
                 background: linear-gradient(45deg, #6a82fb, #45aaf2);
-            }
-            a:hover {
-                background: linear-gradient(45deg, #45aaf2, #6a82fb);
-            }
-            a:link {
-                content: 'https://www.instagram.com/cyb_rahul';
             }
         }
         @media (min-width: 769px) {
             a {
                 background: linear-gradient(45deg, #fc5c7d, #ff416c);
-            }
-            a:hover {
-                background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            }
-            a:link {
-                content: 'https://www.instagram.com/thelamp.india';
             }
         }
     </style>
@@ -97,20 +95,16 @@
     <div class="container">
         <h1>Welcome to Cyb Rahul's World</h1>
         <p>Follow us on Instagram for more updates and content.</p>
-        <a href="https://www.instagram.com/cyb_rahul" target="_blank">Follow @cyb_rahul</a>
+
+        <!-- Added both usernames here with individual buttons -->
+        <div class="btn-group">
+            <a href="https://www.instagram.com/cyb_rahul" target="_blank">Follow @cyb_rahul</a>
+            <a href="https://www.instagram.com/thelamp.india" target="_blank">Follow @thelamp.india</a>
+        </div>
+
         <div class="extra-content">
             <p>Extra Material: Keep hustling and exploring the world of tech and creativity.</p>
         </div>
     </div>
-
-    <script>
-        // Change link based on device (mobile or desktop)
-        let link = document.querySelector('a');
-        if (window.innerWidth < 768) {
-            link.href = 'https://www.instagram.com/cyb_rahul'; // Mobile link
-        } else {
-            link.href = 'https://www.instagram.com/thelamp.india'; // Desktop link
-        }
-    </script>
 </body>
 </html>
