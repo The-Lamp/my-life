@@ -323,30 +323,41 @@
     </div>
 
     <!-- Story Viewing UI -->
-    <div class="story-view" id="storyView">
-        <div class="story-container">
-            <div class="status-bar">
-                <span>9:41</span>
-                <div class="status-bar-right">
-                    <div class="icon">4G</div>
-                    <div class="icon">WiFi</div>
-                    <div class="icon">Battery</div>
-                </div>
-            </div>
-            <div class="story-header">
-                <img id="storyUserImg" src="" alt="User Image">
-                <div class="username-time">
-                    <span id="storyUsername" class="username"></span>
-                    <span class="time"> • 2h ago</span>
-                </div>
-            </div>
-            <div class="story-content" id="storyContent"></div>
-            <div class="send-message-bar">
-                <input type="text" placeholder="Send message...">
-                <img src="send_icon.png" alt="Send">
+<div class="story-view" id="storyView">
+    <div class="story-container">
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-bar-right">
+                <div class="icon">4G</div>
+                <div class="icon">WiFi</div>
+                <div class="icon">Battery</div>
             </div>
         </div>
+        <div class="story-header">
+            <img id="storyUserImg" src="" alt="User Image">
+            <div class="username-time">
+                <span id="storyUsername" class="username"></span>
+                <span class="time"> • 2h ago</span>
+            </div>
+            <div class="story-actions">
+                <img id="likeBtn" class="like-icon" src="like_icon.png" alt="Like">
+                <img id="volumeBtn" class="volume-icon" src="volume_off_icon.png" alt="Mute/Unmute">
+                <img id="closeBtn" class="close-icon" src="close_icon.png" alt="Close">
+            </div>
+        </div>
+        <!-- Story content (video) -->
+        <div class="story-content" id="storyContent">
+            <video id="storyVideo" width="100%" height="100%" muted>
+                <source src="your_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="send-message-bar">
+            <input type="text" placeholder="Send message...">
+            <img src="send_icon.png" alt="Send">
+        </div>
     </div>
+</div>
 
     <script>
         function openStory(userImg, username, storyImg) {
