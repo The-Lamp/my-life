@@ -33,6 +33,24 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+
+      /* Arrow animation keyframes */
+  @keyframes moveArrow {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Apply animation to the arrow */
+  .animated-arrow {
+    animation: moveArrow 1.5s infinite;
+  }
     </style>
     <script type="text/javascript">
       window.__WEBFLOW_CURRENCY_SETTINGS = {
