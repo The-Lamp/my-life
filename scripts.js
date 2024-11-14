@@ -12,19 +12,22 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const PASSWORD = "admin"; // Default password; change as needed
+const PASSWORD = "admin"; // Hardcoded password for demonstration
 
 // Login Function
 function login() {
   const inputPassword = document.getElementById("password").value;
   const errorMessage = document.getElementById("login-error");
 
-  if (inputPassword === PASSWORD) {
+  if (inputPassword === "") {
+    errorMessage.innerText = "Please enter a password.";
+  } else if (inputPassword === PASSWORD) {
+    errorMessage.innerText = ""; // Clear any previous error message
     document.getElementById("login-page").style.display = "none";
     document.getElementById("diary-page").style.display = "block";
-    loadEntries(); // Load entries from Firebase after login
+    loadEntries(); // Load entries from Firebase after successful login
   } else {
-    errorMessage.innerText = "Incorrect password!";
+    errorMessage.innerText = "Incorrect password! Please try again.";
   }
 }
 
