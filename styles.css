@@ -36,9 +36,15 @@ button {
   margin-top: 20px;
   text-align: left;
 }
+
 .entry {
   background-color: #333333;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
+}
+
+#login-error {
+  color: red;
+  font-weight: bold;
 }
