@@ -1,11 +1,11 @@
 // Firebase Configuration - Replace with your Firebase project details
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBR9Sqmk_pIpwlzdBm6fxAZN7ueZ1Evq60",
+  authDomain: "my-life-c6f9a.firebaseapp.com",
+  projectId: "my-life-c6f9a",
+  storageBucket: "my-life-c6f9a.firebasestorage.app",
+  messagingSenderId: "723753128702",
+  appId: "1:723753128702:web:160e4d314a6529b65bcbaf"
 };
 
 // Initialize Firebase
@@ -75,4 +75,3 @@ function loadEntries() {
     .catch((error) => {
       console.error("Error loading entries: ", error);
     });
-}
