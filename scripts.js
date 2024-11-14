@@ -12,33 +12,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const PASSWORD = "admin"; // Hardcoded password for demonstration
-
-// Login Function
-function login() {
-  const inputPassword = document.getElementById("password").value;
-  const errorMessage = document.getElementById("login-error");
-
-  if (inputPassword === "") {
-    errorMessage.innerText = "Please enter a password.";
-  } else if (inputPassword === PASSWORD) {
-    errorMessage.innerText = ""; // Clear any previous error message
-    document.getElementById("login-page").style.display = "none";
-    document.getElementById("diary-page").style.display = "block";
-    loadEntries(); // Load entries from Firebase after successful login
-  } else {
-    errorMessage.innerText = "Incorrect password! Please try again.";
-  }
-}
-
-// Logout Function
-function logout() {
-  document.getElementById("diary-page").style.display = "none";
-  document.getElementById("login-page").style.display = "block";
-  document.getElementById("password").value = "";
-  document.getElementById("login-error").innerText = "";
-}
-
 // Save Entry to Firebase
 function saveEntry() {
   const entryContent = document.getElementById("entry-content").value;
@@ -79,3 +52,6 @@ function loadEntries() {
       console.error("Error loading entries: ", error);
     });
 }
+
+// Load entries when the page loads
+document.addEventListener("DOMContentLoaded", loadEntries);
