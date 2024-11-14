@@ -75,3 +75,4 @@ function loadEntries() {
     .catch((error) => {
       console.error("Error loading entries: ", error);
     });
+}
