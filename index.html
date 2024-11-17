@@ -1,38 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Forum</title>
+    <title>Notein - Advanced Notes App with Firebase</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
+    <script defer src="app.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Advanced Forum</h1>
-        <form id="personalDataForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" required><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required><br>
-            <label for="bio">Bio:</label>
-            <textarea id="bio" rows="4"></textarea><br>
-            <label for="diary">Diary Entry:</label>
-            <textarea id="diary" rows="6" placeholder="Write your thoughts..."></textarea><br>
-            <label for="checklist">Checklist:</label>
-            <input type="text" id="checklist" placeholder="Add checklist items separated by commas"><br>
-            <label for="mission">Mission:</label>
-            <input type="text" id="mission" placeholder="Describe your mission"><br>
-            <label for="progress">Mission Progress (%):</label>
-            <input type="number" id="progress" min="0" max="100"><br>
-            <label for="goal">Goal Date:</label>
-            <input type="date" id="goal"><br>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="app-container">
+        <header>
+            <h1>Notein</h1>
+        </header>
+        <div class="note-input-container">
+            <textarea id="note-input" placeholder="Write your note here..."></textarea>
+            <button id="add-note-btn">Add Note</button>
+        </div>
+        <div class="notes-list" id="notes-list">
+            <!-- Notes will be dynamically added here -->
+        </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-    <script src="app.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const noteInput = document.getElementById('note-input');
+            const addNoteBtn = document.getElementById('add-note-btn');
+            const notesList = document.getElementById('notes-list');
+
+            // Load notes from Firebase on page load
+            db.collection('notes').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    createNoteElement(doc.id, doc.data().text);
+                });
+            });
+
+            // Add event listener for adding a note
+            addNoteBtn.addEventListener('click', () => {
+                const noteText = noteInput.value.trim();
+                if (noteText) {
+                    db.collection('notes').add({
+                        text: noteText
+                    }).then((docRef) => {
+                        createNoteElement(docRef.id, noteText);
+                        noteInput.value = '';
+                    });
+                }
+            });
+
+            // Function to create a note element
+            function createNoteElement(id, text) {
+                const noteElement = document.createElement('div');
+                noteElement.classList.add('note');
+                noteElement.innerHTML = `
+                    <p>${text}</p>
+                    <button class="delete-btn" onclick="deleteNote('${id}')">&times;</button>
+                `;
+                notesList.appendChild(noteElement);
+            }
+
+            // Function to delete a note from Firebase
+            window.deleteNote = function(noteId) {
+                db.collection('notes').doc(noteId).delete().then(() => {
+                    document.querySelector(`.note [onclick="deleteNote('${noteId}')"]`).parentElement.remove();
+                });
+            };
+        });
+    </script>
 </body>
 </html>
