@@ -1,86 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notein - Advanced Notes App with Firebase</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #chatbox { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+    #userInput { width: 100%; padding: 10px; margin-top: 10px; }
+  </style>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>Notein</h1>
-        </header>
-        <div class="note-input-container">
-            <textarea id="note-input" placeholder="Write your note here..."></textarea>
-            <button id="add-note-btn">Add Note</button>
-        </div>
-        <div class="notes-list" id="notes-list">
-            <!-- Notes will be dynamically added here -->
-        </div>
-    </div>
-
-    <script>
-        // Firebase configuration
-        const firebaseConfig = {
-    apiKey: "AIzaSyCqxNGWUyI9Lljyezr043n7gpNh_8fLiaw",
-    authDomain: "my-life-cb7f7.firebaseapp.com",
-    projectId: "my-life-cb7f7",
-    storageBucket: "my-life-cb7f7.firebasestorage.app",
-    messagingSenderId: "475877045719",
-    appId: "1:475877045719:web:bcc011da68d4c883cc0792",
-    measurementId: "G-RV8DYVFVK3"
-  };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const noteInput = document.getElementById('note-input');
-            const addNoteBtn = document.getElementById('add-note-btn');
-            const notesList = document.getElementById('notes-list');
-
-            // Load notes from Firebase on page load
-            db.collection('notes').get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    createNoteElement(doc.id, doc.data().text);
-                });
-            });
-
-            // Add event listener for adding a note
-            addNoteBtn.addEventListener('click', () => {
-                const noteText = noteInput.value.trim();
-                if (noteText) {
-                    db.collection('notes').add({
-                        text: noteText
-                    }).then((docRef) => {
-                        createNoteElement(docRef.id, noteText);
-                        noteInput.value = '';
-                    });
-                }
-            });
-
-            // Function to create a note element
-            function createNoteElement(id, text) {
-                const noteElement = document.createElement('div');
-                noteElement.classList.add('note');
-                noteElement.innerHTML = `
-                    <p>${text}</p>
-                    <button class="delete-btn" onclick="deleteNote('${id}')">&times;</button>
-                `;
-                notesList.appendChild(noteElement);
-            }
-
-            // Function to delete a note from Firebase
-            window.deleteNote = function(noteId) {
-                db.collection('notes').doc(noteId).delete().then(() => {
-                    document.querySelector(`.note [onclick="deleteNote('${noteId}')"]`).parentElement.remove();
-                });
-            };
-        });
-    </script>
+  <h1>My Chatbot</h1>
+  <div id="chatbox"></div>
+  <input id="userInput" type="text" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+  <script src="script.js"></script>
 </body>
 </html>
